@@ -1,37 +1,6 @@
 #include <gtk/gtk.h>
-
-GdkColor RED_COLOR;
-GdkColor GREEN_COLOR;
-GdkColor BLUE_COLOR;
-GdkColor BLACK_COLOR;
-GdkColor WHITE_COLOR;
-
-
-
-void initColorScheme(){
-    gdk_color_parse("#ff0000",&RED_COLOR);
-    gdk_color_parse("#33cc33",&GREEN_COLOR);
-    gdk_color_parse("#0000e6",&BLUE_COLOR);
-    gdk_color_parse("#000000",&BLACK_COLOR);
-    gdk_color_parse("#ffffff",&WHITE_COLOR);
-
-}
-
-int relativeDimension(GtkWidget &window,int dimension,int percentage){
-    
-    /* 
-        returns dimension relative to parent window
-        Window -> refrence to window obj
-        dimension:
-            0 -> HEIGHT
-            1 -> WIDTH
-
-         
-    */
-
-    int WIDTH;
-    
-}
+#include "cscheme/colors.h"
+#include "utils/utils.h"
 
 
 int main (int argc,char** argv){

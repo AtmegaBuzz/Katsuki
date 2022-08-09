@@ -1,10 +1,5 @@
 #include <gtk/gtk.h>
-
-GdkColor RED_COLOR;
-GdkColor GREEN_COLOR;
-GdkColor BLUE_COLOR;
-GdkColor BLACK_COLOR;
-GdkColor WHITE_COLOR;
+#include "colors.h"
 
 
 
