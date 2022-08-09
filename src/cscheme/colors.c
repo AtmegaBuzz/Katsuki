@@ -1,6 +1,11 @@
 #include <gtk/gtk.h>
 #include "colors.h"
 
+GdkColor RED_COLOR;
+GdkColor GREEN_COLOR;
+GdkColor BLUE_COLOR;
+GdkColor BLACK_COLOR;
+GdkColor WHITE_COLOR;
 
 
 void initColorScheme(){

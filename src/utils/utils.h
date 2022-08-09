@@ -3,6 +3,6 @@
 #include <gtk/gtk.h>
 
 
-int relativeDimension(GtkWidget &window,int dimension,int percentage);
+int relativeDimension(GtkWidget *window,int dimension,int percentage);
 
 #endif
