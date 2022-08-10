@@ -5,6 +5,51 @@
 GtkWidget *messageEntry;
 GtkWidget *submitBtn ;
 
+
+void submitMessage(GtkWidget *wid, gpointer data);
+
+void topSection(GtkWidget *root, int WIDTH, int HEIGHT);
+
+void displayChatSection(GtkWidget *root, int WIDTH, int HEIGHT);
+
+void messagingSection(GtkWidget *root, int WIDTH, int HEIGHT);
+
+
+int main(int argc, char **argv)
+{
+
+    initColorScheme();
+
+    gtk_init(&argc, &argv);
+
+    GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_default_size(GTK_WINDOW(window), 500, 700);
+    gtk_window_set_title(GTK_WINDOW(window), "TOP APP");
+    gtk_window_set_resizable(window, FALSE);
+    // making root
+    GtkWidget *root = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+
+    gtk_container_add(GTK_CONTAINER(window), root);
+
+    topSection(
+        root,
+        relativeDimension(window, 0, 100),
+        relativeDimension(window, 1, 5));
+    displayChatSection(
+        root,
+        relativeDimension(window, 0, 100),
+        relativeDimension(window, 1, 80));
+    messagingSection(
+        root,
+        relativeDimension(window, 0, 100),
+        relativeDimension(window, 1, 15));
+
+    gtk_widget_show_all(window);
+    g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    gtk_main();
+}
+
+
 void submitMessage(GtkWidget *wid, gpointer data)
 {
 
@@ -70,38 +115,4 @@ void messagingSection(GtkWidget *root, int WIDTH, int HEIGHT)
     // );
     gtk_box_pack_start(GTK_BOX(bottomBox), messageEntry, 1, 1, 0);
     gtk_box_pack_end(GTK_BOX(bottomBox), submitBtn, 0, 0, 0);
-}
-
-int main(int argc, char **argv)
-{
-
-    initColorScheme();
-
-    gtk_init(&argc, &argv);
-
-    GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_default_size(GTK_WINDOW(window), 500, 700);
-    gtk_window_set_title(GTK_WINDOW(window), "TOP APP");
-    gtk_window_set_resizable(window, FALSE);
-    // making root
-    GtkWidget *root = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-
-    gtk_container_add(GTK_CONTAINER(window), root);
-
-    topSection(
-        root,
-        relativeDimension(window, 0, 100),
-        relativeDimension(window, 1, 5));
-    displayChatSection(
-        root,
-        relativeDimension(window, 0, 100),
-        relativeDimension(window, 1, 80));
-    messagingSection(
-        root,
-        relativeDimension(window, 0, 100),
-        relativeDimension(window, 1, 15));
-
-    gtk_widget_show_all(window);
-    g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-    gtk_main();
 }

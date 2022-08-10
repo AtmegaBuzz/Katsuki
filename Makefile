@@ -6,8 +6,8 @@ CFLAGS = `pkg-config --cflags gtk+-3.0`
 
 all: katsuki
 
-katsuki: ${SRC}/cscheme/colors.o ${SRC}/utils/utils.o ${SRC}/main.o
-	${CC} ${CFLAGS}  ${SRC}/cscheme/colors.o ${SRC}/utils/utils.o ${SRC}/main.o  -o katsuki ${LIBS}
+katsuki: ${SRC}/cscheme/colors.o ${SRC}/utils/utils.o ${SRC}/katsuki.o
+	${CC} ${CFLAGS}  ${SRC}/cscheme/colors.o ${SRC}/utils/utils.o ${SRC}/katsuki.o  -o katsuki ${LIBS}
 
 colors.o: ${SRC}/csheme/colors.c
 		${CC} -c ${CFLAGS} colors.c ${LIBS}
@@ -15,8 +15,8 @@ colors.o: ${SRC}/csheme/colors.c
 utils.o: ${SRC}/utils/utils.c
 		${CC} -c ${CFLAGS} utils.c ${LIBS}
 
-main.o: ${SRC}/main.c
-		${CC} -c ${CFLAGS} main.c ${LIBS}
+katsuki.o: ${SRC}/katsuki.c
+		${CC} -c ${CFLAGS} katsuki.c ${LIBS}
 
 clean:
 		rm ${SRC}/cscheme/colors.o
