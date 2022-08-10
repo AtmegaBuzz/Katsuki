@@ -15,7 +15,6 @@ int relativeDimension(GtkWidget *window,int dimension,int percentage){
     int WIDTH;
     int HEIGHT;
     gtk_window_get_size(GTK_WINDOW(window),&WIDTH,&HEIGHT);
-    printf("%d %d %d|",WIDTH,HEIGHT,percentage);
 
     switch (dimension){
         case 0:
