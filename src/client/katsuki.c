@@ -1,6 +1,5 @@
 #include <gtk/gtk.h>
-#include "cscheme/colors.h"
-#include "utils/utils.h"
+#include "utils.h"
 
 GtkWidget *messageEntry;
 GtkWidget *submitBtn ;
