@@ -3,7 +3,23 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa//inet.h>
+#include <pthread.h>
 
+#define BUFFER_SIZE 1024
+
+char buffer[BUFFER_SIZE];
+
+void* recv_msg(void *serv_sock_arg){
+
+    int server_sock = *((int *)serv_sock_arg);
+    
+    while(1){
+        bzero(buffer, 1024);
+        recv(server_sock, buffer, 1024, 0);
+        printf("Message: %s\n",buffer);      
+    }
+    
+}
 
 int main(){
 
@@ -30,7 +46,10 @@ int main(){
     server_addr.sin_addr.s_addr = inet_addr(ip);
 
     connect(server_sock,(struct sockaddr*)&server_addr,sizeof(server_addr));
-    printf("[+]Connected to server %d\n");
+    printf("[+]Connected to server\n");
+
+    pthread_t recv_thread;
+    pthread_create(&recv_thread,NULL,&recv_msg,&server_sock);
 
     while(1){
         bzero(buffer,1024);
