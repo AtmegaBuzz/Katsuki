@@ -1,8 +1,23 @@
 #include <gtk/gtk.h>
+#include <pthread.h>
+#include <string.h>
 #include "utils.h"
+#include "client.h"
+
+#define BUFFER_LEN 1024;
+#define SERVER_IP "127.0.0.1";
+#define PORT 9099;
+
 
 GtkWidget *messageEntry;
 GtkWidget *submitBtn ;
+char *SEND_BUFFER = "hey this is new client";
+
+struct IP_PORT config_bind = (struct IP_PORT*) malloc(sizeof(IP_PORT));
+config_bind->ip = SERVER_IP;
+config_bind->port = PORT;
+config_bind->buffer = SEND_BUFFER;
+config_bind->buffer_len = BUFFER_LEN;
 
 
 void submitMessage(GtkWidget *wid, gpointer data);
@@ -16,6 +31,13 @@ void messagingSection(GtkWidget *root, int WIDTH, int HEIGHT);
 
 int main(int argc, char **argv)
 {
+
+    // init client 
+
+    pthread_t client_t;
+    pthread_create(&client_t,NULL,&client_awk,(void*)config_bind);
+
+    // init gui 
 
     initColorScheme();
 
@@ -51,8 +73,8 @@ int main(int argc, char **argv)
 
 void submitMessage(GtkWidget *wid, gpointer data)
 {
-
     const gchar *submitData = gtk_entry_get_text(GTK_ENTRY(messageEntry));
+    strncpy(config_bind->buffer,(char*)submitData,BUFFER_LEN);
     printf("%s \n", submitData);
     gtk_entry_set_text(GTK_ENTRY(messageEntry),"");
 }
