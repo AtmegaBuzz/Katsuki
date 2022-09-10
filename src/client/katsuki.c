@@ -4,20 +4,15 @@
 #include "utils.h"
 #include "client.h"
 
-#define BUFFER_LEN 1024;
-#define SERVER_IP "127.0.0.1";
-#define PORT 9099;
+#define BUFFER_LEN 1024
+#define SERVER_IP "127.0.0.1"
+#define PORT 9999
 
 
 GtkWidget *messageEntry;
 GtkWidget *submitBtn ;
-char *SEND_BUFFER = "hey this is new client";
 
-struct IP_PORT config_bind = (struct IP_PORT*) malloc(sizeof(IP_PORT));
-config_bind->ip = SERVER_IP;
-config_bind->port = PORT;
-config_bind->buffer = SEND_BUFFER;
-config_bind->buffer_len = BUFFER_LEN;
+struct IP_PORT *config_bind;
 
 
 void submitMessage(GtkWidget *wid, gpointer data);
@@ -31,6 +26,14 @@ void messagingSection(GtkWidget *root, int WIDTH, int HEIGHT);
 
 int main(int argc, char **argv)
 {
+
+    char *SEND_BUFFER = (char *) malloc(sizeof(char)*BUFFER_LEN);
+
+    config_bind = (struct IP_PORT*) malloc(sizeof(struct IP_PORT));
+    config_bind->ip = SERVER_IP;
+    config_bind->port = PORT;
+    config_bind->buffer = SEND_BUFFER;
+    config_bind->buffer_len = BUFFER_LEN;
 
     // init client 
 

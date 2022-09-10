@@ -8,7 +8,7 @@
 #include "queue.h"
 
 #define SERVER_IP "127.0.0.1"
-#define PORT 9909
+#define PORT 9999
 #define MAX_CONNECTION 5
 #define BUFFER_SIZE 1024
 

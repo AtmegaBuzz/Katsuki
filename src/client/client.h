@@ -2,7 +2,6 @@
 #define __CLIENT_H
 
 
-
 struct IP_PORT{
     char *ip;
     int port;
