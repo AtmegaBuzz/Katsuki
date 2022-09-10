@@ -23,11 +23,11 @@ void displayChatSection(GtkWidget *root, int WIDTH, int HEIGHT);
 
 void messagingSection(GtkWidget *root, int WIDTH, int HEIGHT);
 
-
 int main(int argc, char **argv)
 {
 
     char *SEND_BUFFER = (char *) malloc(sizeof(char)*BUFFER_LEN);
+    bzero(SEND_BUFFER,BUFFER_LEN);
 
     config_bind = (struct IP_PORT*) malloc(sizeof(struct IP_PORT));
     config_bind->ip = SERVER_IP;
@@ -105,13 +105,21 @@ void displayChatSection(GtkWidget *root, int WIDTH, int HEIGHT)
 
     // making top display
     GtkWidget *displayBox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+
+    GtkWidget* textArea = gtk_text_view_new();
+    GtkWidget* scrolledwindow = gtk_scrolled_window_new(NULL, NULL);
+
     gtk_widget_modify_bg(displayBox, GTK_STATE_FLAG_NORMAL, &LIGHT_YELLOW_COLOR);
+    gtk_widget_modify_bg(scrolledwindow, GTK_STATE_FLAG_NORMAL, &LIGHT_BLUE_COLOR);
+
     gtk_widget_set_size_request(GTK_WIDGET(displayBox), 100, 500);
     gtk_widget_set_size_request(
         GTK_WIDGET(displayBox),
         WIDTH,
         HEIGHT);
+    gtk_container_add(GTK_CONTAINER(scrolledwindow), textArea);
     gtk_box_pack_start(GTK_BOX(root), displayBox, 1, 1, 0);
+
 }
 
 void messagingSection(GtkWidget *root, int WIDTH, int HEIGHT)
